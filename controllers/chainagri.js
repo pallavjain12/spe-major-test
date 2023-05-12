@@ -6,11 +6,11 @@ const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
   const chainagri = await Chainagri.find({});
-  res.render("chainagri/index", { chainagri });
+  res.render("place/index", { chainagri });
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('chainagri/new');
+    res.render('place/new');
 }
 
 module.exports.createChainagri = async (req, res) => {
@@ -25,7 +25,7 @@ module.exports.createChainagri = async (req, res) => {
     await chainagri.save();
     console.log(chainagri)
     req.flash('success', 'Successfully added a new Happy Place!');
-    res.redirect(`/chainagri/${chainagri._id}`)
+    res.redirect(`/happy-place/${chainagri._id}`)
 }
 
 module.exports.showChainagri = async (req, res,) => {
@@ -37,18 +37,18 @@ module.exports.showChainagri = async (req, res,) => {
     }).populate('author');
     if (!chainagri) {
         req.flash('error', 'Cannot find the Tea Stall!');
-        return res.redirect('/chainagri');
+        return res.redirect('/happy-place');
     }
-    res.render('chainagri/show', { chainagri });
+    res.render('place/show', { chainagri });
 }
 
 module.exports.renderEditForm = async (req, res) => {
     const chainagri = await Chainagri.findById(req.params.id)
     if (!chainagri) {
-        req.flash('error', 'Cannot find the Tea Stall!');
-        return res.redirect('/chainagri');
+        req.flash('error', 'Cannot find this place!');
+        return res.redirect('/happy-place');
     }
-    res.render('chainagri/edit', { chainagri });
+    res.render('place/edit', { chainagri });
 }
 
 module.exports.updateChainagri = async (req, res) => {
@@ -63,13 +63,13 @@ module.exports.updateChainagri = async (req, res) => {
         }
         await chainagri.updateOne({ $pull: { image: { filename: { $in: req.body.deleteImages } } } })
     }
-    req.flash('success', 'Successfully updated Tea Stall!');
-    res.redirect(`/chainagri/${chainagri._id}`)
+    req.flash('success', 'Successfully updated the place!');
+    res.redirect(`/happy-place/${chainagri._id}`)
 }
 
 module.exports.deleteChainagri = async (req, res) => {
     const { id } = req.params;
     await Chainagri.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted Tea Stall')
-    res.redirect('/chainagri');
+    res.redirect('/happy-place');
 }

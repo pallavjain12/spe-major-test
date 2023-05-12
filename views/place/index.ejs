@@ -4,7 +4,7 @@
 <div class="container">
 <h1>Happy Places</h1>
 <div>
-  <a class="btn btn-dark mb-3" href="/chainagri/new">Add New Place</a>
+  <a class="btn btn-dark mb-3" href="/happy-place/new">Add New Place</a>
 </div>
 
 <% for (let chainagris of chainagri){%>
@@ -25,7 +25,7 @@
                     <p class="card-text">
                         <small class="text-muted"><%= chainagris.location%></small>
                     </p>
-                    <a class="btn btn-info" href="/chainagri/<%=chainagris._id%>">View <%=chainagris.title%></a>
+                    <a class="btn btn-info" href="/happy-place/<%=chainagris._id%>">View <%=chainagris.title%></a>
                 </div>
             </div>
         </div>

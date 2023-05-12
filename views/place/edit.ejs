@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Edit Tea Stall</h1>
     <div class="col-md-6 offset-md-3">
-        <form action="/chainagri/<%=chainagri._id%>?_method=PUT" method="POST" class="validated-form" novalidate  enctype="multipart/form-data">
+        <form action="/happy-place/<%=chainagri._id%>?_method=PUT" method="POST" class="validated-form" novalidate  enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input class="form-control" type="text" id="title" name="chainagri[title]"
@@ -20,7 +20,7 @@
                     </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="price">Tea Price</label>
+                <label class="form-label" for="price">Entry Fees</label>
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">&#8377;</span>
                     <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
@@ -58,10 +58,10 @@
                 <% })%>
             </div>
             <div class="mb-3">
-                <button class="btn btn-info">Update Tea Stall</button>
+                <button class="btn btn-info">Update Place</button>
             </div>
         </form>
-        <a class="btn btn-dark" href="/chainagri/<%= chainagri._id%>">Back to Tea Stall</a>
+        <a class="btn btn-dark" href="/chainagri/<%= chainagri._id%>">Back to Place</a>
 
     </div>
 </div>

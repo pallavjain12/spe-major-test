@@ -14,7 +14,7 @@ module.exports.register = async (req, res, next) => {
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', 'Welcome to Find Your Happy Place!');
-            res.redirect('/chainagri');
+            res.redirect('/happy-place');
             logger.info('New User Registered')
         })
     } catch (e) {
@@ -29,7 +29,7 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.login = (req, res) => {
     req.flash('success', 'welcome back!');
-    const redirectUrl = res.locals.returnTo || '/chainagri';
+    const redirectUrl = res.locals.returnTo || '/happy-place';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
     logger.info('New User Logged in Successfully')
@@ -39,7 +39,7 @@ module.exports.logout = (req, res, next) => {
     req.logout(function(err) {
       if (err) { return next(err); }
       req.flash('success', "Goodbye!");
-      res.redirect('/chainagri');
-      logger.info('New User Logged out Successfully')
+      res.redirect('/happy-place');
+      logger.info('User Logged out Successfully')
     });
   }

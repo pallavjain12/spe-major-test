@@ -10,7 +10,7 @@ module.exports.createReview = async (req, res) => {
     await review.save();
     await chainagri.save();
     req.flash('success', 'Created new review!');
-    res.redirect(`/chainagri/${chainagri._id}`);
+    res.redirect(`/happy-place/${chainagri._id}`);
 }
 
 module.exports.deleteReview = async (req, res) => {
@@ -18,5 +18,5 @@ module.exports.deleteReview = async (req, res) => {
     await Chainagri.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     req.flash('success', 'Successfully deleted review')
-    res.redirect(`/chainagri/${id}`);
+    res.redirect(`/happy-place/${id}`);
 }

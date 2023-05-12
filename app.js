@@ -91,8 +91,8 @@ app.use((req, res, next) => {
 })
 
 app.use('/', userRoutes);
-app.use('/chainagri', chainagriRoutes)
-app.use('/chainagri/:id/reviews', reviewsRoutes)
+app.use('/happy-place', chainagriRoutes)
+app.use('/happy-place/:id/reviews', reviewsRoutes)
 
 
 

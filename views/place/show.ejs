@@ -35,8 +35,8 @@
             </ul>
             <%  if( currentUser && chainagri.author.equals(currentUser._id))  {%>
                 <div class="card-body">
-                    <a class="card-link btn btn-info" href="/chainagri/<%=chainagri._id%>/edit">Edit</a>
-                    <form class="d-inline" action="/chainagri/<%=chainagri._id%>?_method=DELETE" method="POST">
+                    <a class="card-link btn btn-info" href="/happy-place/<%=chainagri._id%>/edit">Edit</a>
+                    <form class="d-inline" action="/happy-place/<%=chainagri._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form>
                 </div>
@@ -51,7 +51,7 @@
 
         <% if(currentUser){ %>
         <h2>Leave a Review</h2>
-        <form action="/chainagri/<%=chainagri._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+        <form action="/happy-place/<%=chainagri._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <fieldset class="starability-heartbeat">
                 <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
                     aria-label="No rating." />
@@ -85,7 +85,7 @@
                 </p>
                 <p class="card-text">Review: <%= review.body %></p>
                 <%  if( currentUser && review.author.equals(currentUser._id))  {%>
-                <form action="/chainagri/<%=chainagri._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <form action="/happy-place/<%=chainagri._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
                  <% } %>
