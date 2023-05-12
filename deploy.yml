@@ -1,0 +1,14 @@
+- name: Pull and Run docker image
+  hosts: all
+  become: yes
+  tasks:
+    - name: copy docker compose file from folder to remote host
+      copy:
+        src: ./docker-compose.yml
+        dest: ./
+    
+    - name: Pull the Docker images specifed in docker-compose
+      shell: docker-compose pull
+    
+    - name: Run docker image
+      shell: docker-compose up -d
