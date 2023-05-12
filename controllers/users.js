@@ -13,7 +13,7 @@ module.exports.register = async (req, res, next) => {
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) return next(err);
-            req.flash('success', 'Welcome to Chai nagri!');
+            req.flash('success', 'Welcome to Find Your Happy Place!');
             res.redirect('/chainagri');
             logger.info('New User Registered')
         })

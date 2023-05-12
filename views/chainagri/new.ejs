@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 
 <div class="row">
-    <h1 class="text-center">New Tea Stall</h1>
+    <h1 class="text-center">New Place</h1>
     <div class="col-md-6 offset-md-3">
         <form action="/chainagri" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
@@ -25,7 +25,7 @@
                     Looks good!
                 </div> -->
                 <div class="mb-3">
-                    <label class="form-label" for="price">Tea Price</label>
+                    <label class="form-label" for="price">Entry Fees</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">&#8377;</span>
                         <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
@@ -53,10 +53,10 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-success">Add Tea Stall</button>
+                    <button class="btn btn-success">Add</button>
                 </div>
             </form>
-            <a class="btn btn-dark" href="/chainagri">All Tea Stalls</a>
+            <a class="btn btn-dark" href="/chainagri">All Places</a>
         </div>
 
     </div>

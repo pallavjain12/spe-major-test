@@ -24,7 +24,7 @@ module.exports.createChainagri = async (req, res) => {
     chainagri.author = req.user._id;
     await chainagri.save();
     console.log(chainagri)
-    req.flash('success', 'Successfully made a new Tea Stall!');
+    req.flash('success', 'Successfully added a new Happy Place!');
     res.redirect(`/chainagri/${chainagri._id}`)
 }
 
