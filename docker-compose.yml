@@ -1,7 +1,7 @@
 version: "3"
 services:
-        chai_nagri:
-            container_name: chai-nagri
+        find_your_place:
+            container_name: find-your-place
             image: pallavjain12/spe-major
             restart: always
             ports:
