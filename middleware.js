@@ -25,12 +25,12 @@ module.exports.isAuthor = async (req, res, next) => {
     const chainagri = await Chainagri.findById(id);
     if (!chainagri.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
-        return res.redirect(`/chainagri/${id}`);
+        return res.redirect(`/happy-place/${id}`);
     }
     next();
 }
 
-module.exports.validateChainagri = (req, res, next) => {
+module.exports.validatePlace = (req, res, next) => {
     const { error } = chainagriSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
@@ -55,7 +55,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     const review = await Review.findById(reviewId);
     if (!review.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
-        return res.redirect(`/chainagri/${id}`);
+        return res.redirect(`/happy-place/${id}`);
     }
     next();
 }

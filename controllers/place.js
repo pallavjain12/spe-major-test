@@ -13,7 +13,7 @@ module.exports.renderNewForm = (req, res) => {
     res.render('place/new');
 }
 
-module.exports.createChainagri = async (req, res) => {
+module.exports.createPlace = async (req, res) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.chainagri.location,
         limit: 1
@@ -28,7 +28,7 @@ module.exports.createChainagri = async (req, res) => {
     res.redirect(`/happy-place/${chainagri._id}`)
 }
 
-module.exports.showChainagri = async (req, res,) => {
+module.exports.showPlace = async (req, res,) => {
     const chainagri = await Chainagri.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
@@ -51,7 +51,7 @@ module.exports.renderEditForm = async (req, res) => {
     res.render('place/edit', { chainagri });
 }
 
-module.exports.updateChainagri = async (req, res) => {
+module.exports.updatePlace = async (req, res) => {
     const { id } = req.params;
     const chainagri = await Chainagri.findByIdAndUpdate(id, { ...req.body.chainagri });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
@@ -67,7 +67,7 @@ module.exports.updateChainagri = async (req, res) => {
     res.redirect(`/happy-place/${chainagri._id}`)
 }
 
-module.exports.deleteChainagri = async (req, res) => {
+module.exports.deletePlace = async (req, res) => {
     const { id } = req.params;
     await Chainagri.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted Tea Stall')

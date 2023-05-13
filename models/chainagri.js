@@ -44,7 +44,7 @@ const ChaiNagri = new Schema({
 
 ChaiNagri.virtual('properties.popUpMarkup').get(function () {
     return `
-    <strong><a href="/chainagri/${this._id}">${this.title}</a><strong>
+    <strong><a href="/happy-place/${this._id}">${this.title}</a><strong>
     <p>${this.description.substring(0, 20)}...</p>`
 });
 

@@ -14,7 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const reviewsRoutes = require('./routes/reviews');
-const chainagriRoutes = require('./routes/chainagri');
+const placeRoutes = require('./routes/place');
 const userRoutes = require('./routes/users');
 const mongoSanitize = require('express-mongo-sanitize');
 // const dbUrl = process.env.DB_URL;
@@ -91,7 +91,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', userRoutes);
-app.use('/happy-place', chainagriRoutes)
+app.use('/happy-place', placeRoutes)
 app.use('/happy-place/:id/reviews', reviewsRoutes)
 
 
