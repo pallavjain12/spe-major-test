@@ -2,7 +2,7 @@ version: "3"
 services:
         chai_nagri:
             container_name: chai-nagri
-            image: prathamrathore/chai_nagri
+            image: pallavjain12/spe-major
             restart: always
             ports:
               - "3000:3000"
