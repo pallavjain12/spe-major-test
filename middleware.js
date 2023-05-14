@@ -1,7 +1,7 @@
-const { chainagriSchema, reviewSchema } = require('./schemas.js');
+const { placeSchema, reviewSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
-const Chainagri = require('./models/chainagri');
 const Review = require('./models/review');
+const Place = require('./models/place')
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -22,8 +22,8 @@ module.exports.storeReturnTo = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
-    const chainagri = await Chainagri.findById(id);
-    if (!chainagri.author.equals(req.user._id)) {
+    const place = await Place.findById(id);
+    if (!place.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
         return res.redirect(`/happy-place/${id}`);
     }
@@ -31,14 +31,13 @@ module.exports.isAuthor = async (req, res, next) => {
 }
 
 module.exports.validatePlace = (req, res, next) => {
-    //const { error } = chainagriSchema.validate(req.body);
-    // if (error) {
-    //     const msg = error.details.map(el => el.message).join(',')
-    //     throw new ExpressError(msg, 400)
-    // } else {
-    //     next();
-    // }
-    next();
+    const { error } = placeSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
 }
 
 module.exports.validateReview = (req, res, next) => {

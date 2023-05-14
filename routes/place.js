@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const Chainagri = require('../models/chainagri');
 const { isLoggedIn, isAuthor, validatePlace } = require('../middleware');
 const place = require('../controllers/place');
 const multer = require('multer');

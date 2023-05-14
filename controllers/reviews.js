@@ -1,21 +1,21 @@
-const Chainagri = require("../models/chainagri");
 const Review = require("../models/review");
+const Place = require("../models/place")
 
 
 module.exports.createReview = async (req, res) => {
-    const chainagri = await Chainagri.findById(req.params.id);
+    const place = await Place.findById(req.params.id);
     const review = new Review(req.body.review);
     review.author = req.user._id;
-    chainagri.reviews.push(review);
+    place.reviews.push(review);
     await review.save();
-    await chainagri.save();
+    await place.save();
     req.flash('success', 'Created new review!');
-    res.redirect(`/happy-place/${chainagri._id}`);
+    res.redirect(`/happy-place/${place._id}`);
 }
 
 module.exports.deleteReview = async (req, res) => {
     const { id, reviewId } = req.params;
-    await Chainagri.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Place.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     req.flash('success', 'Successfully deleted review')
     res.redirect(`/happy-place/${id}`);

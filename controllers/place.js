@@ -1,11 +1,11 @@
-const Chainagri = require("../models/chainagri");
+const Place = require("../models/place")
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
-  const places = await Chainagri.find({});
+  const places = await Place.find({});
   res.render("place/index", { places });
 };
 
@@ -18,7 +18,7 @@ module.exports.createPlace = async (req, res) => {
         query: req.body.place.location,
         limit: 1
     }).send()
-    const place = new Chainagri(req.body.place);
+    const place = new Place(req.body.place);
     place.geometry = geoData.body.features[0].geometry;
     place.image = req.files.map(f => ({ url: f.path, filename: f.filename }));
     place.author = req.user._id;
@@ -29,7 +29,7 @@ module.exports.createPlace = async (req, res) => {
 }
 
 module.exports.showPlace = async (req, res,) => {
-    const place = await Chainagri.findById(req.params.id).populate({
+    const place = await Place.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
             path: 'author'
@@ -43,7 +43,7 @@ module.exports.showPlace = async (req, res,) => {
 }
 
 module.exports.renderEditForm = async (req, res) => {
-    const place = await Chainagri.findById(req.params.id)
+    const place = await Place.findById(req.params.id)
     if (!place) {
         req.flash('error', 'Cannot find this place!');
         return res.redirect('/happy-place');
@@ -53,7 +53,7 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updatePlace = async (req, res) => {
     const { id } = req.params;
-    const place = await Chainagri.findByIdAndUpdate(id, { ...req.body.place });
+    const place = await Place.findByIdAndUpdate(id, { ...req.body.place });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     place.image.push(...imgs);
     await place.save();
@@ -69,7 +69,7 @@ module.exports.updatePlace = async (req, res) => {
 
 module.exports.deletePlace = async (req, res) => {
     const { id } = req.params;
-    await Chainagri.findByIdAndDelete(id);
+    await Place.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted the place. Now SAD. :-(')
     res.redirect('/happy-place');
 }

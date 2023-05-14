@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'ChaiNagri',
+        folder: 'SpeMajor',
         allowedFormats: ['jpeg', 'png', 'jpg']
     }
 });
