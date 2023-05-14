@@ -7,12 +7,12 @@
   <a class="btn btn-dark mb-3" href="/happy-place/new">Add New Place</a>
 </div>
 
-<% for (let chainagris of chainagri){%>
+<% for (let place of places){%>
     <div class="card mb-3" >
         <div class="row">
             <div class="col-md-4">
-                <%if(chainagris.image.length) {%>
-                    <img class="img-fluid" alt="" src="<%=chainagris.image[0].url%>">
+                <%if(place.image.length) {%>
+                    <img class="img-fluid" alt="" src="<%=place.image[0].url%>">
                     <% }else {%>
                     <img class="img-fluid" alt=""
                         src="https://c1.wallpaperflare.com/preview/346/680/937/tea-tea-stall-india-stall.jpg">
@@ -20,12 +20,12 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><%= chainagris.title %> </h5>
-                    <p class="card-text"><%= chainagris.description %></p>
+                    <h5 class="card-title"><%= place.title %> </h5>
+                    <p class="card-text"><%= place.description %></p>
                     <p class="card-text">
-                        <small class="text-muted"><%= chainagris.location%></small>
+                        <small class="text-muted"><%= place.location%></small>
                     </p>
-                    <a class="btn btn-info" href="/happy-place/<%=chainagris._id%>">View <%=chainagris.title%></a>
+                    <a class="btn btn-info" href="/happy-place/<%=place._id%>">View <%=place.title%></a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 </div>
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const chainagri = { features: <%-JSON.stringify(chainagri) %>}
+    const places = { features: <%-JSON.stringify(places) %>}
 </script>
 
 <script src="/javascripts/clusterMap.js"></script>

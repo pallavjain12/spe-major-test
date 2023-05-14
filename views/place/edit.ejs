@@ -2,19 +2,19 @@
 <div class="row">
     <h1 class="text-center">Edit Tea Stall</h1>
     <div class="col-md-6 offset-md-3">
-        <form action="/happy-place/<%=chainagri._id%>?_method=PUT" method="POST" class="validated-form" novalidate  enctype="multipart/form-data">
+        <form action="/happy-place/<%=place._id%>?_method=PUT" method="POST" class="validated-form" novalidate  enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="chainagri[title]"
-                    value="<%=chainagri.title %>" required>
+                <input class="form-control" type="text" id="title" name="place[title]"
+                    value="<%=place.title %>" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="chainagri[location]"
-                    value="<%=chainagri.location %>" required>
+                <input class="form-control" type="text" id="location" name="place[location]"
+                    value="<%=place.location %>" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -24,7 +24,7 @@
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">&#8377;</span>
                     <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-                        aria-describedby="price-label" name="chainagri[price]" value="<%=chainagri.price %>"required>
+                        aria-describedby="price-label" name="place[price]" value="<%=place.price %>"required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -34,7 +34,7 @@
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
                 <textarea class="form-control" type="text" id="description"
-                    name="chainagri[description]" required><%= chainagri.description%> </textarea>
+                    name="place[description]" required><%= place.description%> </textarea>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <% chainagri.image.forEach(function(img, i) {  %>
+                <% place.image.forEach(function(img, i) {  %>
                 <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
                 <div class="form-check-inline">
                     <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
@@ -61,7 +61,7 @@
                 <button class="btn btn-info">Update Place</button>
             </div>
         </form>
-        <a class="btn btn-dark" href="/happy-place/<%= chainagri._id%>">Back to Place</a>
+        <a class="btn btn-dark" href="/happy-place/<%= place._id%>">Back to Place</a>
 
     </div>
 </div>

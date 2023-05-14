@@ -5,13 +5,13 @@
         
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-            <% chainagri.image.forEach((img, i) => {  %>
+            <% place.image.forEach((img, i) => {  %>
               <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
                 <img class="d-block w-100"  src="<%= img.url%>" alt="">
               </div>
               <% }) %>
             </div>
-            <% if(chainagri.image.length > 1) {%>
+            <% if(place.image.length > 1) {%>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
@@ -25,18 +25,18 @@
 
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title"><%= chainagri.title%></h5>
-                <p class="card-text"><%= chainagri.description%></p>
+                <h5 class="card-title"><%= place.title%></h5>
+                <p class="card-text"><%= place.description%></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted"><%= chainagri.location%></li>
-                <li class="list-group-item">Submitted by <%= chainagri.author.username%></li>
-                <li class="list-group-item">&#8377;<%= chainagri.price%>/person</li>
+                <li class="list-group-item text-muted"><%= place.location%></li>
+                <li class="list-group-item">Submitted by <%= place.author.username%></li>
+                <li class="list-group-item">&#8377;<%= place.price%>/person</li>
             </ul>
-            <%  if( currentUser && chainagri.author.equals(currentUser._id))  {%>
+            <%  if( currentUser && place.author.equals(currentUser._id))  {%>
                 <div class="card-body">
-                    <a class="card-link btn btn-info" href="/happy-place/<%=chainagri._id%>/edit">Edit</a>
-                    <form class="d-inline" action="/happy-place/<%=chainagri._id%>?_method=DELETE" method="POST">
+                    <a class="card-link btn btn-info" href="/happy-place/<%=place._id%>/edit">Edit</a>
+                    <form class="d-inline" action="/happy-place/<%=place._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form>
                 </div>
@@ -51,7 +51,7 @@
 
         <% if(currentUser){ %>
         <h2>Leave a Review</h2>
-        <form action="/happy-place/<%=chainagri._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+        <form action="/happy-place/<%=place._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <fieldset class="starability-heartbeat">
                 <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
                     aria-label="No rating." />
@@ -76,7 +76,7 @@
             <button class="btn btn-success">Submit</button>
         </form>
         <% } %>
-        <% for(let review of chainagri.reviews) { %>
+        <% for(let review of place.reviews) { %>
         <div class="card mb-3 ">
             <div class="card-body">
                 <h5 class="card-title"> <%= review.author.username%></h5>
@@ -85,7 +85,7 @@
                 </p>
                 <p class="card-text">Review: <%= review.body %></p>
                 <%  if( currentUser && review.author.equals(currentUser._id))  {%>
-                <form action="/happy-place/<%=chainagri._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <form action="/happy-place/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
                  <% } %>
@@ -97,7 +97,7 @@
 
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const chainagri = <%- JSON.stringify(chainagri) %>
+    const place = <%- JSON.stringify(place) %>
 </script>
 
 <script src="/javascripts/showPageMap.js"></script>
