@@ -18,7 +18,7 @@ afterAll(done => {
 afterAll(() => setTimeout(() => process.exit(0), 5000));
 
 
-describe("SERVER REACHABILITY TEST", () => {
+describe("SERVER REACHABI0LITY TEST", () => {
   test("GET /", async () => {
     await request(app)
       .get("/")
@@ -41,4 +41,32 @@ describe("SERVER REACHABILITY TEST", () => {
      
   },10000);
 
+});
+
+describe("POST /login", () => {
+  it("logs in a user with valid credentials", async () => {
+    const credentials = {
+      username: "pallavjain12",
+      password: "password",
+    };
+
+    const response = await request(app)
+      .post("/login")
+      .send(credentials);
+
+    expect(response.status).toBe(302);
+  },50000);
+
+  it("returns an error for invalid credentials", async () => {
+    const credentials2 = {
+      username: "Utkarsh99.Shrivasbvjftava@gmail.com",
+      password: "123cvhd45678",
+    };
+
+    const response = await request(app)
+      .post("/login")
+      .send(credentials2);
+
+    expect(response.status).toBe(302);
+  },20000);
 });
