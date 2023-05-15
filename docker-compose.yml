@@ -2,7 +2,7 @@ version: "3"
 services:
         find_your_place:
             container_name: find-your-place
-            image: pallavjain12/spe-major:latest
+            image: pallavjain12/spe-major-test:latest
             restart: always
             ports:
               - "3000:3000"
