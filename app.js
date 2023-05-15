@@ -24,8 +24,9 @@ const MongoDBStore = require("connect-mongo")(session);
 const dbUrl = 'mongodb://localhost:27017/spe-major';
 console.log(process.env.docker)
 console.log("check here ||||||")
-if (process.env.docker !== undefined && process.env.docker==='true')
+if (process.env.docker !== undefined && process.env.docker==='true') {
     dbUrl = 'mongodb://mongo:27018/spe-major';
+}
 // 'mongodb://localhost:27017/spe-major'
 // 'mongodb://mongo:27017/spe-major'
 console.log(dbUrl)
