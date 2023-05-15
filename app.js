@@ -21,7 +21,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const MongoDBStore = require("connect-mongo")(session);
 
 // const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/spe-major';
-const dbUrl = (process.env.docker !== undefined && process.env.docker==='true') ? 'mongodb://mongo:27018/spe-major' : 'mongodb://localhost:27017/spe-major';
+const dbUrl = (process.env.docker !== undefined && process.env.docker==='true') ? 'mongodb://localhost:27018/spe-major' : 'mongodb://localhost:27017/spe-major';
 console.log(process.env.docker)
 console.log("check here ||||||")
 // if (process.env.docker !== undefined && process.env.docker==='true') {
